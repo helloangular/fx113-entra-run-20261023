@@ -1,0 +1,14 @@
+name: fx113 Entra run control
+run-name: ${{ inputs.helio_execution_id }}
+on:
+  workflow_dispatch:
+    inputs:
+      helio_execution_id: {required: true, type: string}
+      helio_release_id: {required: true, type: string}
+      workflow_revision: {required: true, type: string}
+      release_version: {required: false, type: string}
+jobs:
+  control:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "fx113 Entra run owned control (no deployment)"
