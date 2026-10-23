@@ -1,14 +1,32 @@
-name: fx113 Entra run control
-run-name: ${{ inputs.helio_execution_id }}
+name: qa-owned-rem21-entra
+run-name: "${{ inputs.helio_execution_id }}"
 on:
   workflow_dispatch:
     inputs:
-      helio_execution_id: {required: true, type: string}
-      helio_release_id: {required: true, type: string}
-      workflow_revision: {required: true, type: string}
-      release_version: {required: false, type: string}
+      environment:
+        type: string
+        default: qa-owned-rem21-entra-production
+      helio_execution_id:
+        type: string
+        default: ''
+      helio_release_id:
+        type: string
+        default: ''
+      helio_stage_id:
+        type: string
+        default: ''
+      workflow_revision:
+        type: string
+        default: ''
+      release_version:
+        type: string
+        default: ''
+permissions:
+  contents: read
 jobs:
-  control:
+  production:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment: qa-owned-rem21-entra-production
     steps:
-      - run: echo "fx113 Entra run owned control (no deployment)"
+      - run: echo 'Owned Entra-run fixture only; no deployment'
